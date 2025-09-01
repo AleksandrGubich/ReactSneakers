@@ -1,6 +1,24 @@
 function App() {
   return (
     <div className="wrapper clear">
+      <div className="overlay">
+        <div className="drawer">
+          <h2>Корзина</h2>
+          <div className="cartItem d-flex align-center">
+            <div
+              style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }}
+              className="cartItemImg"
+            ></div>
+
+            <div className="mr-20 d-flex">
+              <p className="mb-5">Крос 1</p>
+              <b>12 999 руб.</b>
+            </div>
+            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+          </div>
+        </div>
+      </div>
+
       <header className="d-flex justify-between align-center p-40">
         <div className="d-flex align-center">
           <img width={40} height={40} src="/img/logo.png" alt="Sneakers" />
@@ -20,9 +38,18 @@ function App() {
         </ul>
       </header>
       <div className="content p-40">
-        <h1 className="mb-40">Все кроссовки</h1>
+        <div className="d-flex align-center mb-40 justify-between">
+          <h1>Все кроссовки</h1>
+          <div className="search-block d-flex">
+            <img src="/img/search.svg" alt="Search" />
+            <input placeholder="Поиск..." />
+          </div>
+        </div>
         <div className="d-flex">
           <div className="card">
+            <div className="favorite">
+              <img src="/img/unliked.svg" alt="Unliked" />
+            </div>
             <img
               width={133}
               height={112}
