@@ -4,12 +4,24 @@ import { Header } from "./components/header/Header";
 
 const arr = [
   {
-    name: "Крос 1",
+    title: "Крос 1",
     price: 12999,
+    imageUrl: "/img/sneakers/1.jpg",
   },
   {
-    name: "Крос 2",
+    title: "Крос 2",
     price: 15600,
+    imageUrl: "/img/sneakers/2.jpg",
+  },
+  {
+    title: "Крос 3",
+    price: 8600,
+    imageUrl: "/img/sneakers/3.jpg",
+  },
+  {
+    title: "Крос 4",
+    price: 8999,
+    imageUrl: "/img/sneakers/4.jpg",
   },
 ];
 
@@ -29,9 +41,12 @@ function App() {
         <div className="d-flex">
           {arr.map((obj) => (
             <Card
-              title={obj.name}
+              title={obj.title}
               price={obj.price}
-              imageUrl="/img/sneakers/1.jpg"
+              imageUrl={obj.imageUrl}
+              onClick={() => {
+                console.log(obj);
+              }}
             />
           ))}
         </div>

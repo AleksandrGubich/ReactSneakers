@@ -11,7 +11,7 @@ export function Card(props) {
           <span>Цена:</span>
           <b>{props.price} руб.</b>
         </div>
-        <button className="button">
+        <button className="button" onClick={props.onClick}>
           <img height={11} width={11} src="/img/plus.svg" alt="Plus" />
         </button>
       </div>
