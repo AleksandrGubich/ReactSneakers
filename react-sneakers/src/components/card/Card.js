@@ -1,7 +1,9 @@
+import styles from "./card.module.scss";
+
 export function Card(props) {
   return (
-    <div className="card">
-      <div className="favorite">
+    <div className={styles.card}>
+      <div className={styles.favorite}>
         <img src="/img/unliked.svg" alt="Unliked" />
       </div>
       <img width={133} height={112} src={props.imageUrl} alt="Sneaker" />
