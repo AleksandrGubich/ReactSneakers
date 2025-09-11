@@ -9,7 +9,7 @@ export function Header() {
         </div>
       </div>
       <ul className="d-flex">
-        <li className="mr-30">
+        <li className="mr-30 cu-p">
           <img src="/img/cart.svg" alt="" />
           <span>1205 руб.</span>
         </li>
