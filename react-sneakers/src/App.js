@@ -1,35 +1,34 @@
+import { useState } from "react";
 import { Card } from "./components/card/Card";
 import { Drawer } from "./components/drawer/Drawer";
 import { Header } from "./components/header/Header";
 
-const arr = [
-  {
-    title: "Крос 1",
-    price: 12999,
-    imageUrl: "/img/sneakers/1.jpg",
-  },
-  {
-    title: "Крос 2",
-    price: 15600,
-    imageUrl: "/img/sneakers/2.jpg",
-  },
-  {
-    title: "Крос 3",
-    price: 8600,
-    imageUrl: "/img/sneakers/3.jpg",
-  },
-  {
-    title: "Крос 4",
-    price: 8999,
-    imageUrl: "/img/sneakers/4.jpg",
-  },
-];
-
 function App() {
+  const [items, setItems] = useState([]);
+  const [cartOpened, setCartOpened] = useState(false);
+
+  fetch("https://68c45fba81ff90c8e61c0f7a.mockapi.io/items")
+    .then((res) => {
+      return res.json();
+    })
+    .then((json) => {
+      setItems(json);
+    });
+
   return (
     <div className="wrapper clear">
-      <Drawer />
-      <Header />
+      {cartOpened && (
+        <Drawer
+          onClose={() => {
+            setCartOpened(false);
+          }}
+        />
+      )}
+      <Header
+        onClickCart={() => {
+          setCartOpened(true);
+        }}
+      />
       <div className="content p-40">
         <div className="d-flex align-center mb-40 justify-between">
           <h1>Все кроссовки</h1>
@@ -38,8 +37,8 @@ function App() {
             <input placeholder="Поиск..." />
           </div>
         </div>
-        <div className="d-flex">
-          {arr.map((obj) => (
+        <div className="d-flex flex-wrap">
+          {items.map((obj) => (
             <Card
               title={obj.title}
               price={obj.price}
