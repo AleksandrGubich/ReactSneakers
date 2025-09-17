@@ -1,4 +1,4 @@
-export function Drawer({ onClose, items = [] }) {
+export function Drawer({ onClose, items = [], onRemove }) {
   return (
     <div className="overlay">
       <div className="drawer">
@@ -24,6 +24,7 @@ export function Drawer({ onClose, items = [] }) {
                 <b>{obj.price}</b>
               </div>
               <img
+                onClick={() => onRemove(obj.id)}
                 className="removeBtn"
                 src="/img/btn-remove.svg"
                 alt="Remove"

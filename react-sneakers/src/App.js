@@ -9,6 +9,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [cartOpened, setCartOpened] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     axios
@@ -28,6 +29,16 @@ function App() {
     setCartItems((prev) => [...prev, obj]);
   };
 
+  const onRemoveItem = (id) => {
+    axios.delete(`https://68c45fba81ff90c8e61c0f7a.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const onAddToFavorite = (obj) => {
+    axios.post("https://68c45fba81ff90c8e61c0f7a.mockapi.io/favorites", obj);
+    setFavorites((prev) => [...prev, obj]);
+  };
+
   const onChangeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -36,6 +47,7 @@ function App() {
     <div className="wrapper clear">
       {cartOpened && (
         <Drawer
+          onRemove={onRemoveItem}
           onClose={() => {
             setCartOpened(false);
           }}
@@ -77,8 +89,8 @@ function App() {
                 onPlus={(obj) => {
                   onAddToCart(obj);
                 }}
-                onFavorite={() => {
-                  console.log("Добавили в закладки");
+                onFavorite={(obj) => {
+                  onAddToFavorite(obj);
                 }}
               />
             ))}
